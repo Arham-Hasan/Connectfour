@@ -12,7 +12,8 @@ def print_board(board):
 def valid_entry(board,input):
     validity=False
     if input < 0 or input >= len(board):
-        print('Not valid entry')
+        print("""
+Value must be from 0 to 6""")
         print()
     else: validity=True
     return validity
@@ -23,7 +24,8 @@ def drop_down(col,board):
             lowest=i
     if lowest== -1:
         print()
-        print('Cannot drop piece here')
+        print("""
+Cannot drop piece here""")
     return lowest 
    
    #-----------------------------------------------------------------     
@@ -79,11 +81,7 @@ def check_tie(board):
         for j in range(len(board[i])):
             if board[i][j] != 0: return False
     return True
-            
-            
-
-
-               
+                           
 board=[[0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0],
@@ -104,11 +102,11 @@ while not game_over:
     while valid_input==False:
         while True:
             try:
-                col_selected=int(input(f'Player {player_turn} : Enter column number :  '))
+                col_selected=int(input(f'Player {player_turn} : Enter column number (0 to 6) :  '))
                 break
             except ValueError:
                 print("""
-Please Enter a Number
+Invalid! Please Enter a Number (0 to 6)
                 """,flush=True)
         if col_selected >= 0 and col_selected < 7:
             row=drop_down(col_selected,board)
@@ -122,6 +120,7 @@ Please Enter a Number
         print()
         print_board(board)
         print(f"""
+              
 PLAYER  {player_turn}   WINS!!!""")
         game_over=True
         
@@ -129,6 +128,7 @@ PLAYER  {player_turn}   WINS!!!""")
         print()
         print_board(board)
         print(f"""
+              
 TIE GAME""")
         game_over=True
         
